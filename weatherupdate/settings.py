@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-fal35j92a5&_th5-811!ajgr!!wl8es3&!j#tjq7u-_9cq^wjy'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'api',
-    'rest_framework'
+    'rest_framework',
+    'weather',
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -119,17 +121,18 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'taomi1997@gmail.com'
-EMAIL_HOST_PASSWORD = 'anepsjudnvvifntv'
+EMAIL_HOST_PASSWORD = ''
 
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 CELERY_TIMEZONE = 'Africa/Lagos'
-CELERY_BEAT_SCHEDULE = {
-    'send_weather_mail': {
-        'task': 'api.tasks.send_weather_mail',
-        'schedule': crontab(minute=4),
-    },
-}
+# CELERY_BEAT_SCHEDULE = {
+#     'send_weather_mail': {
+#         'task': 'api.tasks.send_weather_mail',
+#         'schedule': crontab(minute=1),
+#     },
+# }
 
 STATIC_URL = 'static/'
 

@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import WeatherMailView, send_weather_mail_info
+from .views import SendMailApiView,WeatherSendApiView
 
 urlpatterns = [
-    path('send-weather-mail/', WeatherMailView.as_view(), name='send_weather_mail'),
-    path('send_mail/', send_weather_mail_info, name='sendmail')
+    path('send/',WeatherSendApiView.as_view(), name='weather'),
+    path('send_mail/', SendMailApiView.as_view(), name='sendmail')
 ]
